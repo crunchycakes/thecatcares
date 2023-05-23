@@ -35,6 +35,7 @@ public class PlayerMovement : MonoBehaviour
         UpdateAnimationState();
     }
 
+    // update player animation
     private void UpdateAnimationState() {
         if (dirX > 0f) {
             anim.SetBool("running", true);
