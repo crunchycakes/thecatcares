@@ -9,13 +9,13 @@ public class PlayerMovement : MonoBehaviour
     private BoxCollider2D coll;
     private SpriteRenderer sprite;
     private Animator anim;
-    private CompositeCollider2D platformCollider;
+    private Collider2D platformCollider;
     
     private float dirX = 0f;
     private float dirY = 0f;
     private float timeSinceLastDown = -1f;
     private float coyoteTimeCounter = 0f;
-    private bool isGroundedState = true;
+    private bool IsGroundedState = true;
 
     [Tooltip("Grace period to allow jumping after leaving jumpable ground.")]
     [SerializeField] private float coyoteTimeLimit = 0.2f;
@@ -34,13 +34,14 @@ public class PlayerMovement : MonoBehaviour
         coll = GetComponent<BoxCollider2D>();
         sprite = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
-        platformCollider = GameObject.Find("Platform").GetComponent<CompositeCollider2D>();
+        platformCollider = GameObject.Find("Platform").GetComponent<Collider2D>();
+        IsGroundedState = isGrounded();
     }
 
     // Update is called once per frame
     private void Update()
     {
-        isGroundedState = isGrounded();
+        IsGroundedState = isGrounded();
 
         MovementJump();
         MovementHorizontal();
@@ -50,7 +51,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
     private void MovementJump() {
-        if (isGroundedState) {
+        if (IsGroundedState) {
             coyoteTimeCounter = 0f;
         } else {
             coyoteTimeCounter += Time.deltaTime;
@@ -69,7 +70,7 @@ public class PlayerMovement : MonoBehaviour
     private void MovementVertical() {
         dirY = Input.GetAxisRaw("Vertical");
 
-        if (dirY < 0f && isGroundedState) {
+        if (dirY < 0f && IsGroundedState) {
             Physics2D.IgnoreCollision(coll, platformCollider, true);
             timeSinceLastDown = 0f;
         } else if (timeSinceLastDown >= 0f) {
@@ -104,8 +105,15 @@ public class PlayerMovement : MonoBehaviour
         anim.SetInteger("state", (int)state);
     }
 
-    private bool isGrounded() {
-        return Physics2D.BoxCast(coll.bounds.center, coll.bounds.size, 0f, Vector2.down, 0.1f, jumpableGround);
+    public RaycastHit2D isGrounded() {
+        Vector3 feetPos = coll.bounds.center - coll.bounds.extents.y * Vector3.up;
+        return Physics2D.BoxCast(feetPos, coll.bounds.size, 0f, Vector2.down, 0.1f, jumpableGround);
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision) {
+        if (collision.gameObject.tag == "Platform") {
+            platformCollider = collision.collider;
+        }
     }
 
 }
