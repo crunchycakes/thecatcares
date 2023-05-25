@@ -6,7 +6,7 @@ public class PlayerMovement : MonoBehaviour
 {
 
     private Rigidbody2D body;
-    private BoxCollider2D coll;
+    private CapsuleCollider2D coll;
     private SpriteRenderer sprite;
     private Animator anim;
     private Collider2D platformCollider;
@@ -31,7 +31,7 @@ public class PlayerMovement : MonoBehaviour
     private void Start()
     {
         body = GetComponent<Rigidbody2D>();
-        coll = GetComponent<BoxCollider2D>();
+        coll = GetComponent<CapsuleCollider2D>();
         sprite = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
         platformCollider = GameObject.Find("Platform").GetComponent<Collider2D>();

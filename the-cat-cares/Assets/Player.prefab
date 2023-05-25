@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3051720676814491177}
   - component: {fileID: 3051720676814491176}
   - component: {fileID: 3051720676814491178}
-  - component: {fileID: 3051720676814491179}
+  - component: {fileID: 6823102229640233312}
   - component: {fileID: 3051720676814491156}
   - component: {fileID: 3051720676814491158}
   - component: {fileID: 3051720676814491157}
@@ -110,8 +110,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
---- !u!61 &3051720676814491179
-BoxCollider2D:
+--- !u!70 &6823102229640233312
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -124,18 +124,8 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: -0.15625}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.5625, y: 0.6875}
-  m_EdgeRadius: 0
+  m_Size: {x: 0.5625, y: 0.6825}
+  m_Direction: 0
 --- !u!114 &3051720676814491156
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -150,8 +140,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   coyoteTimeLimit: 0.2
   platformFallInterval: 0.2
-  moveSpeed: 7
-  jumpForce: 14
+  moveSpeed: 5
+  jumpForce: 9
   jumpableGround:
     serializedVersion: 2
     m_Bits: 64

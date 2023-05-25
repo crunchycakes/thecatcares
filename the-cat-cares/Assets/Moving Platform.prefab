@@ -107,12 +107,12 @@ GameObject:
   - component: {fileID: 1619676748186917951}
   - component: {fileID: 1619676748186917950}
   - component: {fileID: 1619676748186917944}
-  - component: {fileID: 1619676748186917947}
+  - component: {fileID: 6396281964319648797}
   - component: {fileID: 1619676748186917945}
   - component: {fileID: 1619676748186917946}
   m_Layer: 6
   m_Name: Moving Platform
-  m_TagString: Platform
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -193,7 +193,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 1619676748186917948}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 53171288e7c23e441b76767a7f72a519, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 1
   m_UsedByComposite: 0
@@ -210,7 +210,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 0.09375}
   m_EdgeRadius: 0
---- !u!251 &1619676748186917947
+--- !u!251 &6396281964319648797
 PlatformEffector2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -223,9 +223,9 @@ PlatformEffector2D:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RotationalOffset: 0
-  m_UseOneWay: 1
+  m_UseOneWay: 0
   m_UseOneWayGrouping: 0
-  m_SurfaceArc: 175
+  m_SurfaceArc: 180
   m_UseSideFriction: 0
   m_UseSideBounce: 0
   m_SideArc: 1
