@@ -15,10 +15,16 @@ public class PlayerMovement : MonoBehaviour
     private float dirY = 0f;
     private float timeSinceLastDown = -1f;
     private float coyoteTimeCounter = 0f;
+    private float jumpBufferTimeCounter = 0f;
+    private float jumpIntervalCounter = 0f;
     private bool IsGroundedState = true;
 
     [Tooltip("Grace period to allow jumping after leaving jumpable ground.")]
     [SerializeField] private float coyoteTimeLimit = 0.2f;
+    [Tooltip("Grace period to allow preemptively pressing jump key before ground is reached.")]
+    [SerializeField] private float jumpBufferTimeLimit = 0.2f;
+    [Tooltip("How often to allow jumping.")]
+    [SerializeField] private float jumpInterval = 0.2f;
     [Tooltip("Length of time to ignore platform collision after pressing down.")]
     [SerializeField] private float platformFallInterval = 0.2f;
     [SerializeField] private float moveSpeed = 7f;
@@ -51,14 +57,39 @@ public class PlayerMovement : MonoBehaviour
     }
 
     private void MovementJump() {
+
+        if (jumpIntervalCounter < jumpInterval) {
+            jumpIntervalCounter += Time.deltaTime;
+
+            // below is duplicated
+            if (Input.GetButtonUp("Jump") && body.velocity.y > 0f) {
+                body.velocity = new Vector2(body.velocity.x, body.velocity.y * 0.5f);
+            }
+
+            return;
+        }
+
         if (IsGroundedState) {
             coyoteTimeCounter = 0f;
         } else {
             coyoteTimeCounter += Time.deltaTime;
         }
 
-        if (Input.GetButtonDown("Jump") && coyoteTimeCounter < coyoteTimeLimit) {
+        if (Input.GetButtonDown("Jump")) {
+            jumpBufferTimeCounter = 0f;
+        } else if (jumpBufferTimeCounter >= 0f) {
+            jumpBufferTimeCounter += Time.deltaTime;
+        }
+
+        if (jumpBufferTimeCounter < jumpBufferTimeLimit && coyoteTimeCounter < coyoteTimeLimit) {
             body.velocity = new Vector2(body.velocity.x, jumpForce);
+            coyoteTimeCounter = coyoteTimeLimit + 1f;
+            jumpBufferTimeCounter = jumpBufferTimeLimit + 1f;
+            jumpIntervalCounter = 0f;
+        }
+
+        if (Input.GetButtonUp("Jump") && body.velocity.y > 0f) {
+            body.velocity = new Vector2(body.velocity.x, body.velocity.y * 0.5f);
         }
     }
 
@@ -106,8 +137,8 @@ public class PlayerMovement : MonoBehaviour
     }
 
     public RaycastHit2D isGrounded() {
-        Vector3 feetPos = coll.bounds.center - coll.bounds.extents.y * Vector3.up;
-        return Physics2D.BoxCast(feetPos, coll.bounds.size, 0f, Vector2.down, 0.1f, jumpableGround);
+        Vector3 sizeMod = new Vector3(0.1f, 0.1f, 0f);
+        return Physics2D.BoxCast(coll.bounds.center, coll.bounds.size - sizeMod, 0f, Vector2.down, 0.1f, jumpableGround);
     }
 
     private void OnCollisionEnter2D(Collision2D collision) {

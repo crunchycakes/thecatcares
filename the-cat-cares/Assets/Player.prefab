@@ -141,7 +141,7 @@ MonoBehaviour:
   coyoteTimeLimit: 0.2
   platformFallInterval: 0.2
   moveSpeed: 5
-  jumpForce: 9
+  jumpForce: 12
   jumpableGround:
     serializedVersion: 2
     m_Bits: 64
