@@ -18,6 +18,8 @@ public class PlayerMovement : MonoBehaviour
     private float jumpBufferTimeCounter = 0f;
     private float jumpIntervalCounter = 0f;
     private bool IsGroundedState = true;
+    private Vector3[] groundedSizeMod = {new Vector3(0.1f, 0.1f, 0f), new Vector3(-0.1f, 0.1f, 0f)};
+    private int groundedSizeModIndex = 0;
 
     [Tooltip("Grace period to allow jumping after leaving jumpable ground.")]
     [SerializeField] private float coyoteTimeLimit = 0.2f;
@@ -137,8 +139,16 @@ public class PlayerMovement : MonoBehaviour
     }
 
     public RaycastHit2D isGrounded() {
-        Vector3 sizeMod = new Vector3(0.1f, 0.1f, 0f);
-        return Physics2D.BoxCast(coll.bounds.center, coll.bounds.size - sizeMod, 0f, Vector2.down, 0.1f, jumpableGround);
+        return Physics2D.BoxCast(coll.bounds.center, coll.bounds.size - groundedSizeMod[groundedSizeModIndex], 0f, Vector2.down, 0.1f, jumpableGround);
+    }
+
+    // happy = wall climbing
+    public void setHappyState(bool isHappy) {
+        if (isHappy) {
+            groundedSizeModIndex = 1;
+        } else {
+            groundedSizeModIndex = 0;
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision) {
