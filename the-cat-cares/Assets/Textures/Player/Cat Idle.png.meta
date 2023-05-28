@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: c4242b17cb8c7104e84382df01d3d219
+guid: ddc69a6087f3a8541bf22b1f75338a03
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -117,7 +117,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Cat Walking_0
+      name: Cat Idle_0
       rect:
         serializedVersion: 2
         x: 0
@@ -131,14 +131,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 956d12314c44a5547a37068b97849405
-      internalID: -2108348773
+      spriteID: 244964b35f9d4e342be7a0cfb712c189
+      internalID: -1260741274
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cat Walking_1
+      name: Cat Idle_1
       rect:
         serializedVersion: 2
         x: 32
@@ -152,14 +152,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 756c7a5f0d0a4364d98def3768b14fc2
-      internalID: -971128068
+      spriteID: f12f4ff65b395cb4e9aad9190a30742f
+      internalID: -170507376
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cat Walking_2
+      name: Cat Idle_2
       rect:
         serializedVersion: 2
         x: 64
@@ -173,14 +173,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9f01da9317e4bc54b851539b939850cc
-      internalID: -498005702
+      spriteID: e9b7976a0cabda14fad6e33e6ffffe8e
+      internalID: 357651035
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cat Walking_3
+      name: Cat Idle_3
       rect:
         serializedVersion: 2
         x: 96
@@ -194,14 +194,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 82184be7c4d61b24abbb0d3442b252b6
-      internalID: -1796861870
+      spriteID: 43c3232d9972dde438e4f2a8eebee9e1
+      internalID: -1206373188
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cat Walking_4
+      name: Cat Idle_4
       rect:
         serializedVersion: 2
         x: 128
@@ -215,14 +215,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f63f4e1c8301e464084989710d902c7d
-      internalID: -385040765
+      spriteID: a7ef6268d760ad642b044d816dcc31a7
+      internalID: 1263789611
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cat Walking_5
+      name: Cat Idle_5
       rect:
         serializedVersion: 2
         x: 160
@@ -236,14 +236,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7c6f1042767490a4a9c032142cbd09d1
-      internalID: 1047764892
+      spriteID: 8000cc1f5b6c52d44a6b1a7fcfc2b531
+      internalID: 2113318405
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cat Walking_6
+      name: Cat Idle_6
       rect:
         serializedVersion: 2
         x: 192
@@ -257,14 +257,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1aec844e759ed2b4c886c0f707e5cab2
-      internalID: -5072042
+      spriteID: 067cee59e3cf2ac46bbd8c8ebc3cd1fa
+      internalID: 1783200763
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cat Walking_7
+      name: Cat Idle_7
       rect:
         serializedVersion: 2
         x: 224
@@ -278,8 +278,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d9089fde56126c440942c6591e44d3d3
-      internalID: -425425107
+      spriteID: c9541d1a16897e54e814cba9682161a5
+      internalID: 749733885
       vertices: []
       indices: 
       edges: []
@@ -295,14 +295,14 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Cat Walking_0: -2108348773
-      Cat Walking_1: -971128068
-      Cat Walking_2: -498005702
-      Cat Walking_3: -1796861870
-      Cat Walking_4: -385040765
-      Cat Walking_5: 1047764892
-      Cat Walking_6: -5072042
-      Cat Walking_7: -425425107
+      Cat Idle_0: -1260741274
+      Cat Idle_1: -170507376
+      Cat Idle_2: 357651035
+      Cat Idle_3: -1206373188
+      Cat Idle_4: 1263789611
+      Cat Idle_5: 2113318405
+      Cat Idle_6: 1783200763
+      Cat Idle_7: 749733885
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
