@@ -12,8 +12,8 @@ public class PlayerStates : MonoBehaviour
     public enum PlayerState { sad, happy, excited };
     private PlayerState lastPlayerState = PlayerState.sad;
 
-    private float timeSinceLastActivation = 0f;
     private float excitedActivationInterval = 1.5f;
+    private float timeSinceLastActivation = 2f;
 
     [SerializeField] private GameObject sadBox;
     [Tooltip("Starting state of player.")] // need to serialise it anyways
