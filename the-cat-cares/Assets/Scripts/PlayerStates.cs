@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class PlayerStates : MonoBehaviour
 {
     private Rigidbody2D body;
     private PlayerMovement playerMovement;
     private SpriteRenderer sprite;
+    private TMP_Text stateText;
     public enum PlayerState { sad, happy, excited };
     private PlayerState lastPlayerState = PlayerState.sad;
 
@@ -14,14 +16,18 @@ public class PlayerStates : MonoBehaviour
     private float excitedActivationInterval = 5.5f;
 
     [SerializeField] private GameObject sadBox;
-    [Tooltip("Starting state of player.")]
-    [SerializeField] private PlayerState playerState = PlayerState.excited;
+    [Tooltip("Starting state of player.")] // need to serialise it anyways
+    public PlayerState playerState = PlayerState.excited;
     // Start is called before the first frame update
     void Start()
     {
         body = GetComponent<Rigidbody2D>();
         playerMovement = GetComponent<PlayerMovement>();
         sprite = GetComponent<SpriteRenderer>();
+        stateText = GameObject.Find("State Text").GetComponent<TMP_Text>();
+        
+        string playerStateStr = playerState.ToString();
+        stateText.text = playerStateStr[0].ToString().ToUpper() + playerStateStr.Substring(1);
         //playerMovement.setHappyState(true);
     }
 
@@ -35,9 +41,11 @@ public class PlayerStates : MonoBehaviour
             playerMovement.setHappyState(false);
         }
 
-        // clear all state effects upon switching
+        // perform when switching states
         if (lastPlayerState != playerState) {
             deactivateAllStates();
+            string playerStateStr = playerState.ToString();
+            stateText.text = playerStateStr[0].ToString().ToUpper() + playerStateStr.Substring(1);
         }
 
         timeSinceLastActivation += Time.deltaTime;
