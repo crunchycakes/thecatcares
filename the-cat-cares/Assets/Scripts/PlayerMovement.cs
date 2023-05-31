@@ -43,6 +43,7 @@ public class PlayerMovement : MonoBehaviour
         sprite = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
         platformCollider = GameObject.Find("Platform").GetComponent<Collider2D>();
+        Debug.Log(platformCollider);
         IsGroundedState = isGrounded();
     }
 
@@ -106,11 +107,13 @@ public class PlayerMovement : MonoBehaviour
         if (dirY < 0f && IsGroundedState) {
             Physics2D.IgnoreCollision(coll, platformCollider, true);
             timeSinceLastDown = 0f;
+            Debug.Log("down success?");
         } else if (timeSinceLastDown >= 0f) {
             timeSinceLastDown += Time.deltaTime;
             if (timeSinceLastDown >= platformFallInterval) {
                 timeSinceLastDown = -1f;
                 Physics2D.IgnoreCollision(coll, platformCollider, false);
+                Debug.Log("reverse down");
             }
         }
     }
@@ -151,10 +154,11 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision) {
-        if (collision.gameObject.tag == "Platform") {
-            platformCollider = collision.collider;
-        }
-    }
+    // private void OnCollisionEnter2D(Collision2D collision) {
+    //     if (collision.gameObject.tag == "Platform") {
+    //         platformCollider = collision.collider;
+    //         Debug.Log(platformCollider);
+    //     }
+    // }
 
 }

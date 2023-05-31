@@ -7,12 +7,15 @@ public class PlayerStates : MonoBehaviour
     private Rigidbody2D body;
     private PlayerMovement playerMovement;
     private SpriteRenderer sprite;
-    private enum PlayerState { sad, happy, excited };
-    private PlayerState playerState = PlayerState.excited;
+    public enum PlayerState { sad, happy, excited };
     private PlayerState lastPlayerState = PlayerState.sad;
 
-    [SerializeField] private GameObject happyBox;
+    private float timeSinceLastActivation = 0f;
+    private float excitedActivationInterval = 5.5f;
 
+    [SerializeField] private GameObject sadBox;
+    [Tooltip("Starting state of player.")]
+    [SerializeField] private PlayerState playerState = PlayerState.excited;
     // Start is called before the first frame update
     void Start()
     {
@@ -31,6 +34,13 @@ public class PlayerStates : MonoBehaviour
         } else if (playerState != PlayerState.happy && lastPlayerState == PlayerState.happy) {
             playerMovement.setHappyState(false);
         }
+
+        // clear all state effects upon switching
+        if (lastPlayerState != playerState) {
+            deactivateAllStates();
+        }
+
+        timeSinceLastActivation += Time.deltaTime;
 
         // handle pressing fire key
         Fire1KeyDown();
@@ -80,20 +90,33 @@ public class PlayerStates : MonoBehaviour
 
     // spawn box
     private void sadActivation() {
+        if (timeSinceLastActivation < excitedActivationInterval) {
+            return;
+        }
         float facing = 1f;
         if (sprite.flipX) {
             facing = -1f;
         }
-        Instantiate(happyBox, transform.position + new Vector3(0.5f * facing, 0f, 0f), Quaternion.identity);
+        Instantiate(sadBox, transform.position + new Vector3(0.5f * facing, 0f, 0f), Quaternion.identity);
+        timeSinceLastActivation = 0f;
     }
 
     // floating behaviour
     private void excitedActivation() {
         body.constraints = RigidbodyConstraints2D.FreezePositionY | RigidbodyConstraints2D.FreezeRotation;
+        timeSinceLastActivation = 0f;
     }
 
     private void excitedDeactivation() {
         body.constraints = RigidbodyConstraints2D.FreezeRotation;
+    }
+
+    private void deactivateAllStates() {
+        excitedDeactivation();
+    }
+
+    public void setPlayerState(PlayerState state) {
+        playerState = state;
     }
 
 }

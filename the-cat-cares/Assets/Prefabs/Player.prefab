@@ -160,7 +160,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c6539c28f2d51a4da99b06b749b1c90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  happyBox: {fileID: 3989403522363320044, guid: d1a3acfb0d4cb0342bfe6ce7fb9f9731, type: 3}
+  sadBox: {fileID: 0}
+  playerState: 0
 --- !u!114 &3051720676814491158
 MonoBehaviour:
   m_ObjectHideFlags: 0
