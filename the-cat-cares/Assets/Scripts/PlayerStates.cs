@@ -90,12 +90,14 @@ public class PlayerStates : MonoBehaviour
 
     // spawn box
     private void sadActivation() {
-        if (timeSinceLastActivation < excitedActivationInterval) {
-            return;
-        }
         float facing = 1f;
         if (sprite.flipX) {
             facing = -1f;
+        }
+        // destroy any boxes in scene
+        GameObject[] boxes = GameObject.FindGameObjectsWithTag("Box");
+        foreach (GameObject box in boxes) {
+            Destroy(box);
         }
         Instantiate(sadBox, transform.position + new Vector3(0.5f * facing, 0f, 0f), Quaternion.identity);
         timeSinceLastActivation = 0f;

@@ -21362,6 +21362,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 6075504301240472317, guid: c77c08df8d6c985419adbc7ebf7cf138, type: 3}
+      propertyPath: sadBox
+      value: 
+      objectReference: {fileID: 3989403522363320044, guid: d1a3acfb0d4cb0342bfe6ce7fb9f9731, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c77c08df8d6c985419adbc7ebf7cf138, type: 3}
 --- !u!1001 &3989403521129443776
