@@ -70,7 +70,7 @@ public class PlayerMovement : MonoBehaviour
                 (
                     Input.GetButtonUp("Jump")
                     // when happy state, allow fire key to jump to prevent confusion
-                    || (Input.GetButton("Fire1") && playerStateScript.playerState == PlayerStates.PlayerState.happy)
+                    || (Input.GetButtonUp("Fire1") && playerStateScript.playerState == PlayerStates.PlayerState.happy)
                 ) && body.velocity.y > 0f
                 ) {
                 body.velocity = new Vector2(body.velocity.x, body.velocity.y * 0.5f);
@@ -86,7 +86,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         // again, allow fire1 to jump when happy state
-        if (Input.GetButtonDown("Jump") || (Input.GetButton("Fire1") && playerStateScript.playerState == PlayerStates.PlayerState.happy)) {
+        if (Input.GetButtonDown("Jump") || (Input.GetButtonDown("Fire1") && playerStateScript.playerState == PlayerStates.PlayerState.happy)) {
             jumpBufferTimeCounter = 0f;
         } else if (jumpBufferTimeCounter >= 0f) {
             jumpBufferTimeCounter += Time.deltaTime;
@@ -99,7 +99,12 @@ public class PlayerMovement : MonoBehaviour
             jumpIntervalCounter = 0f;
         }
 
-        if (Input.GetButtonUp("Jump") && body.velocity.y > 0f) {
+        if (
+            (
+                Input.GetButtonUp("Jump")
+                // again, when happy state, allow fire key to jump to prevent confusion
+                || (Input.GetButtonUp("Fire1") && playerStateScript.playerState == PlayerStates.PlayerState.happy)
+            ) && body.velocity.y > 0f) {
             body.velocity = new Vector2(body.velocity.x, body.velocity.y * 0.5f);
         }
     }
