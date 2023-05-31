@@ -13,7 +13,7 @@ public class PlayerStates : MonoBehaviour
     private PlayerState lastPlayerState = PlayerState.sad;
 
     private float timeSinceLastActivation = 0f;
-    private float excitedActivationInterval = 5.5f;
+    private float excitedActivationInterval = 1.5f;
 
     [SerializeField] private GameObject sadBox;
     [Tooltip("Starting state of player.")] // need to serialise it anyways
@@ -98,6 +98,9 @@ public class PlayerStates : MonoBehaviour
 
     // spawn box
     private void sadActivation() {
+        if (timeSinceLastActivation < excitedActivationInterval) {
+            return;
+        }
         float facing = 1f;
         if (sprite.flipX) {
             facing = -1f;
