@@ -10,6 +10,7 @@ public class PlayerMovement : MonoBehaviour
     private SpriteRenderer sprite;
     private Animator anim;
     private Collider2D platformCollider;
+    private PlayerStates playerStateScript;
     
     private float dirX = 0f;
     private float dirY = 0f;
@@ -43,6 +44,7 @@ public class PlayerMovement : MonoBehaviour
         sprite = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
         platformCollider = GameObject.Find("Platform").GetComponent<Collider2D>();
+        playerStateScript = GetComponent<PlayerStates>();
         IsGroundedState = isGrounded();
     }
 
@@ -64,7 +66,13 @@ public class PlayerMovement : MonoBehaviour
             jumpIntervalCounter += Time.deltaTime;
 
             // below is duplicated
-            if (Input.GetButtonUp("Jump") && body.velocity.y > 0f) {
+            if (
+                (
+                    Input.GetButtonUp("Jump")
+                    // when happy state, allow fire key to jump to prevent confusion
+                    || (Input.GetButton("Fire1") && playerStateScript.playerState == PlayerStates.PlayerState.happy)
+                ) && body.velocity.y > 0f
+                ) {
                 body.velocity = new Vector2(body.velocity.x, body.velocity.y * 0.5f);
             }
 
@@ -77,7 +85,8 @@ public class PlayerMovement : MonoBehaviour
             coyoteTimeCounter += Time.deltaTime;
         }
 
-        if (Input.GetButtonDown("Jump")) {
+        // again, allow fire1 to jump when happy state
+        if (Input.GetButtonDown("Jump") || (Input.GetButton("Fire1") && playerStateScript.playerState == PlayerStates.PlayerState.happy)) {
             jumpBufferTimeCounter = 0f;
         } else if (jumpBufferTimeCounter >= 0f) {
             jumpBufferTimeCounter += Time.deltaTime;
